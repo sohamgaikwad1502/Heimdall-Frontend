@@ -1,16 +1,45 @@
-export interface ButtonProps {
-  varient: "primary" | "secondary";
+interface ButtonProps {
+  varient: "Primary" | "Secondary";
   size: "sm" | "md" | "lg";
   text: string;
-  startIcon: any;
-  endIcon: any;
+  textColor?: string;
+  startIcon?: any;
+  endIcon?: any;
   onclick: () => void;
 }
 
-const Button = () => {
+const varientStyles = {
+  Primary:
+    "border-none text-purple-600 bg-purple-300  hover:ring-4 hover:ring-purple-200",
+  Secondary:
+    "border-none text-white bg-purple-600 hover:bg-purple-500 hover:ring-4 hover:ring-purple-200",
+};
+
+const sizeStyles = {
+  lg: "text-xl px-8 py-4 rounded-xl",
+  md: "text-md px-4 py-2 rounded-md",
+  sm: "text-sm px-2 py-1 rounded-sm",
+};
+
+const Button = (props: ButtonProps) => {
   return (
-    <div className="">
-      <button className="bg-amber-400 p-2 m-2">Button</button>
+    <div className="m-2">
+      <button
+        className={
+          varientStyles[props.varient] +
+          " " +
+          sizeStyles[props.size] +
+          " " +
+          `cursor-pointer`
+        }
+        onClick={props.onclick}
+      >
+        <div className="flex justify-between">
+          <span className="text-xs">{props.startIcon}</span>
+          <div className="pl-2 pr-2">{props.text}</div>
+          <span className="text-xs">{props.endIcon}</span>
+        </div>
+      </button>
     </div>
   );
 };
