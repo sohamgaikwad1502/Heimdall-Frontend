@@ -1,10 +1,12 @@
+import { ReactElement } from "react";
+
 interface ButtonProps {
   varient: "Primary" | "Secondary";
   size: "sm" | "md" | "lg";
   text: string;
   textColor?: string;
-  startIcon?: any;
-  endIcon?: any;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
   onclick: () => void;
 }
 
@@ -21,6 +23,8 @@ const sizeStyles = {
   sm: "text-sm px-2 py-1 rounded-sm",
 };
 
+const textStyles = "text-center font-light";
+
 const Button = (props: ButtonProps) => {
   return (
     <div className="m-2">
@@ -34,10 +38,10 @@ const Button = (props: ButtonProps) => {
         }
         onClick={props.onclick}
       >
-        <div className="flex justify-between">
-          <span className="text-xs">{props.startIcon}</span>
-          <div className="pl-2 pr-2">{props.text}</div>
-          <span className="text-xs">{props.endIcon}</span>
+        <div className="flex justify-center items-center">
+          <span className={textStyles}>{props.startIcon}</span>
+          <div className={`pl-2 pr-2` + textStyles}> {props.text}</div>
+          <span className={textStyles}>{props.endIcon}</span>
         </div>
       </button>
     </div>
